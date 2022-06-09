@@ -1,3 +1,16 @@
 const express = require("express")
-const port = process.env.PORT || 5000
+require("dotenv").config()
+const { graphqlHTTP } = require("express-graphql")
+const schema = require("./schema/schema")
+
+const port = process.env.PORT || 5200
+
 const app = express()
+app.listen(port, console.log(`Server Running on Port ${port}`))
+app.use(
+	"/graphql",
+	graphqlHTTP({
+		schema,
+		graphical: process.env.NODE_ENV === "development",
+	})
+)
