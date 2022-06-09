@@ -11,6 +11,6 @@ app.use(
 	"/graphql",
 	graphqlHTTP({
 		schema,
-		graphical: process.env.NODE_ENV === "development",
+		graphiql: true,
 	})
 )
